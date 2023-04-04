@@ -15,13 +15,11 @@ SPREAD_WIDTH = 0.05  # 5%
 CLOSE_THRESHOLD = 0.2  # 20%
 PORTFOLIO = pd.DataFrame(columns=["Date", "Position", "P/L"])
 DATE_FORMAT = "%Y-%m-%d"
-
 # Define function to get the mid-market rate for a given option
 def get_mid_market_rate(option):
     bid = option.get("bid", 0)
     ask = option.get("ask", 0)
     return (bid + ask) / 2
-
 # Define function to buy a call spread and a put spread at the mid-market rate
 def buy_spreads(date, tqqq_strike, sqqq_strike):
     tqqq = yf.Ticker(TICKER_TQQQ)
@@ -72,15 +70,15 @@ def buy_spreads(date, tqqq_strike, sqqq_strike):
     if is_options_expiration_day(current_date) or is_last_working_day_of_week(current_date):
 
     # Close the position by selling the spreads at the mid-market rate
-    position = portfolio[-1]
-    tqqq_call_sell_price = get_mid_market_rate(tqqq_calls[tqqq_calls.index(tqqq_option) + 1])
-    tqqq_put_sell_price = get_mid_market_rate(tqqq_calls[sqqq_puts.index(sqqq_option) - 1])
-    sqqq_put_sell_price = get_mid_market_rate(sqqq_puts[sqqq_puts.index(sqqq_option) - 1])
-    sqqq_call_sell_price = get_mid_market_rate(sqqq_puts[tqqq_calls.index(tqqq_option) + 1])
-    position["TQQQ Call Spread"]["Sell Price"] = tqqq_call_sell_price
-    position["TQQQ Put Spread"]["Sell Price"] = tqqq_put_sell_price
-    position["SQQQ Put Spread"]["Sell Price"] = sqqq_put_sell_price
-    position["SQQQ Call Spread"]["Sell Price"] = sqqq_call_sell_price
+        position = portfolio[-1]
+        tqqq_call_sell_price = get_mid_market_rate(tqqq_calls[tqqq_calls.index(tqqq_option) + 1])
+        tqqq_put_sell_price = get_mid_market_rate(tqqq_calls[sqqq_puts.index(sqqq_option) - 1])
+        sqqq_put_sell_price = get_mid_market_rate(sqqq_puts[sqqq_puts.index(sqqq_option) - 1])
+        sqqq_call_sell_price = get_mid_market_rate(sqqq_puts[tqqq_calls.index(tqqq_option) + 1])
+        position["TQQQ Call Spread"]["Sell Price"] = tqqq_call_sell_price
+        position["TQQQ Put Spread"]["Sell Price"] = tqqq_put_sell_price
+        position["SQQQ Put Spread"]["Sell Price"] = sqqq_put_sell_price
+        position["SQQQ Call Spread"]["Sell Price"] = sqqq_call_sell_price
     portfolio[-1] = position
 
     # Print the position
@@ -111,7 +109,7 @@ def calculate_weekly_portfolio_return():
                 current_portfolio_value += position["TQQQ Put Spread"]["Sell Price"] - position["TQQQ Put Spread"]["Buy Price"]
                 last_week_portfolio_value += position["TQQQ Put Spread"]["Sell Price"] - position["TQQQ Put Spread"]["Buy Price"]
                 if "Sell Price" in position["SQQQ Put Spread"]:
-                    current_portfolio_value += position["SQQQ Put Spread"]["Sell Price"] - position["SQQ
+                    current_portfolio_value += position["SQQQ Put Spread"]["Sell Price"] - position["SQQ"]
 
 
     
