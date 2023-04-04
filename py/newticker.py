@@ -64,18 +64,17 @@ def execute_trade(portfolio):
     call_mid = mid_market_rate(call_bid, call_ask)
     put_mid = mid_market_rate(put_bid, put_ask)
     # Calculate the premium received and margin required for the call and put spreads
-call_premium_received = call_mid - (tqqq_atm - call_spread_width / 2)
-put_premium_received = put_mid - (sqqq_atm + put_spread_width / 2)
-
-call_margin_required = (tqqq_atm - call_strike) * 100
-put_margin_required = (put_strike - sqqq_atm) * 100
-
-# Execute the trade if there is enough cash in the portfolio to cover the margin required
-if portfolio['cash'] >= call_margin_required + put_margin_required:
-    call_trade = {'Ticker': 'TQQQ', 'Quantity': -100, 'Price': call_mid}
-    put_trade = {'Ticker': 'SQQQ', 'Quantity': 100, 'Price': put_mid}
-    portfolio = record_trade(portfolio, call_trade)
-    portfolio = record_trade(portfolio, put_trade)
-    
-print(portfolio)
+    call_premium_received = call_mid - (tqqq_atm - call_spread_width / 2)
+    put_premium_received = put_mid - (sqqq_atm + put_spread_width / 2)
+    call_margin_required = (tqqq_atm - call_strike) * 100
+    put_margin_required = (put_strike - sqqq_atm) * 100
+    # Execute the trade if there is enough cash in the portfolio to cover the margin required
+    if portfolio['cash'] >= call_margin_required + put_margin_required:
+        call_trade = {'Ticker': 'TQQQ', 'Quantity': -100, 'Price': call_mid}
+        put_trade = {'Ticker': 'SQQQ', 'Quantity': 100, 'Price': put_mid}
+        portfolio = record_trade(portfolio, call_trade)
+        portfolio = record_trade(portfolio, put_trade)
+        print(portfolio)
+    else:
+        print(portfolio)
 
