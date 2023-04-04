@@ -5,7 +5,7 @@ Make both spreads 5% wide and have it as a variable so I can adjust later. <br>
 Close the position on the day of the options expiration or the last working day of that week, if the market is closed on that day. <br>
 The code should use data from a predifened start and end date.<br>
 Record profit loss from each sale in the portfolio and give updates on weekly portfolio returns. 
-<a href="Code_Output/newbook.html">Check Full Code</a></p>
+<a href="https://github.com/collinskandie/trading-bot/blob/main/py/newBook.ipynb">Check Full Code</a></p>
 <br>
 <img src="./Code_Output/output.jpg"> <br>
-<a href="Code_Output/newbook.html">Check Full Code</a>
+<a href="https://github.com/collinskandie/trading-bot/blob/main/py/newBook.ipynb">Check Full Code</a>
